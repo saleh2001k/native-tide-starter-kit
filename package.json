@@ -8,7 +8,14 @@
     "create-native-tide": "./bin/cli.js"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepublishOnly": "node scripts/copy-template.js",
+    "version:patch": "npm version patch && git push && git push --tags",
+    "version:minor": "npm version minor && git push && git push --tags",
+    "version:major": "npm version major && git push && git push --tags",
+    "publish:patch": "npm run version:patch && npm publish",
+    "publish:minor": "npm run version:minor && npm publish",
+    "publish:major": "npm run version:major && npm publish"
   },
   "keywords": [
     "react-native",
