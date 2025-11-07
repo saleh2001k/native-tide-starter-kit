@@ -1,0 +1,38 @@
+{
+  "name": "native-tide-starter-kit",
+  "version": "1.0.0",
+  "description": "A comprehensive React Native starter kit with dynamic multi-theme system, authentication setup, and best practices",
+  "main": "index.js",
+  "bin": {
+    "native-tide-starter-kit": "./bin/cli.js",
+    "create-native-tide": "./bin/cli.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "react-native",
+    "expo",
+    "starter",
+    "template",
+    "boilerplate",
+    "unistyles",
+    "typescript"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "chalk": "^4.1.2",
+    "fs-extra": "^11.2.0",
+    "inquirer": "^8.2.6",
+    "ora": "^5.4.1"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "files": [
+    "bin",
+    "template"
+  ]
+}
+
