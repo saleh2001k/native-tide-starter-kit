@@ -21,6 +21,14 @@
   ],
   "author": "",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/saleh2001k/native-tide-starter-kit.git"
+  },
+  "homepage": "https://github.com/saleh2001k/native-tide-starter-kit#readme",
+  "bugs": {
+    "url": "https://github.com/saleh2001k/native-tide-starter-kit/issues"
+  },
   "dependencies": {
     "chalk": "^4.1.2",
     "fs-extra": "^11.2.0",
