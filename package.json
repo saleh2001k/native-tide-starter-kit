@@ -24,6 +24,7 @@
     "template",
     "boilerplate",
     "unistyles",
+    "nativewind",
     "typescript"
   ],
   "author": "",
@@ -47,7 +48,9 @@
   },
   "files": [
     "bin",
-    "template"
+    "template",
+    "template-nativewind",
+    "template-shared"
   ]
 }
 

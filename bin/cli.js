@@ -6,7 +6,6 @@ const path = require('path');
 const chalk = require('chalk');
 const ora = require('ora');
 
-const TEMPLATE_DIR = path.join(__dirname, '..', 'template');
 const CURRENT_DIR = process.cwd();
 
 // Convert app name to slug format (lowercase, no spaces, no special chars)
@@ -39,11 +38,11 @@ function replacePlaceholders(content, appName, appSlug, bundleId) {
 }
 
 // Copy template files and replace placeholders
-async function copyTemplateFiles(targetDir, appName, appSlug, bundleId) {
-  const filesToCreate = await fs.readdir(TEMPLATE_DIR);
+async function copyTemplateFiles(targetDir, appName, appSlug, bundleId, templateDir) {
+  const filesToCreate = await fs.readdir(templateDir);
 
   for (const file of filesToCreate) {
-    const origFilePath = path.join(TEMPLATE_DIR, file);
+    const origFilePath = path.join(templateDir, file);
     const targetFilePath = path.join(targetDir, file);
 
     const stats = await fs.stat(origFilePath);
@@ -117,6 +116,16 @@ async function main() {
       },
     },
     {
+      type: 'list',
+      name: 'stylingSolution',
+      message: 'Which styling solution would you like to use?',
+      choices: [
+        { name: 'Unistyles', value: 'unistyles' },
+        { name: 'NativeWind', value: 'nativewind' },
+      ],
+      default: 'unistyles',
+    },
+    {
       type: 'input',
       name: 'projectDir',
       message: 'Where should we create your project?',
@@ -138,20 +147,37 @@ async function main() {
   const appSlug = toSlug(appName);
   const bundleId = toBundleId(appSlug);
   const projectDir = path.join(CURRENT_DIR, answers.projectDir.trim());
+  const stylingSolution = answers.stylingSolution;
+  const templateDir = path.join(__dirname, '..', stylingSolution === 'nativewind' ? 'template-nativewind' : 'template');
+  const sharedTemplateDir = path.join(__dirname, '..', 'template-shared');
 
   console.log(chalk.gray(`\nApp Name: ${appName}`));
   console.log(chalk.gray(`App Slug: ${appSlug}`));
   console.log(chalk.gray(`Bundle ID: ${bundleId}`));
+  console.log(chalk.gray(`Styling Solution: ${stylingSolution === 'nativewind' ? 'NativeWind' : 'Unistyles'}`));
   console.log(chalk.gray(`Project Directory: ${projectDir}\n`));
 
   const spinner = ora('Creating your project...').start();
 
   try {
+    // Verify template directory exists
+    if (!(await fs.pathExists(templateDir))) {
+      throw new Error(`Template directory not found: ${templateDir}`);
+    }
+
+    // Verify shared template directory exists
+    if (!(await fs.pathExists(sharedTemplateDir))) {
+      throw new Error(`Shared template directory not found: ${sharedTemplateDir}`);
+    }
+
     // Create project directory
     await fs.ensureDir(projectDir);
 
-    // Copy template files
-    await copyTemplateFiles(projectDir, appName, appSlug, bundleId);
+    // Copy shared template files first (assets, scripts, etc.)
+    await copyTemplateFiles(projectDir, appName, appSlug, bundleId, sharedTemplateDir);
+
+    // Copy template-specific files (will merge with shared files)
+    await copyTemplateFiles(projectDir, appName, appSlug, bundleId, templateDir);
 
     spinner.succeed('Project created successfully!');
 

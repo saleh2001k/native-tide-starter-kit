@@ -11,6 +11,7 @@ npm login
 ```
 
 You'll need:
+
 - Your npm username
 - Your password
 - Your email address
@@ -37,6 +38,7 @@ If it returns a 404, the name is available.
 ### First Time Publishing
 
 1. **Make sure all changes are committed and pushed:**
+
    ```bash
    git status
    git add .
@@ -45,6 +47,7 @@ If it returns a 404, the name is available.
    ```
 
 2. **Update the template (if you made changes to the source repo):**
+
    ```bash
    node scripts/copy-template.js
    ```
@@ -76,21 +79,25 @@ This will publish version 1.0.0 to npm.
 4. **Bump version and publish:**
 
    For a **patch** version (1.0.0 → 1.0.1) - bug fixes:
+
    ```bash
    npm run publish:patch
    ```
 
    For a **minor** version (1.0.0 → 1.1.0) - new features:
+
    ```bash
    npm run publish:minor
    ```
 
    For a **major** version (1.0.0 → 2.0.0) - breaking changes:
+
    ```bash
    npm run publish:major
    ```
 
    Or manually:
+
    ```bash
    npm version patch  # or minor, or major
    git push
@@ -101,6 +108,7 @@ This will publish version 1.0.0 to npm.
 ## Versioning
 
 Follow [Semantic Versioning](https://semver.org/):
+
 - **MAJOR** version when you make incompatible API changes
 - **MINOR** version when you add functionality in a backwards compatible manner
 - **PATCH** version when you make backwards compatible bug fixes
@@ -108,11 +116,13 @@ Follow [Semantic Versioning](https://semver.org/):
 ## Package Linking
 
 The package.json now includes:
+
 - `repository`: Links to your GitHub repo
 - `homepage`: Points to the README
 - `bugs`: Links to GitHub issues
 
 This means:
+
 - Users can see the source code on npm
 - The npm package page will link to your GitHub repo
 - Users can install directly from GitHub if needed: `npm install saleh2001k/native-tide-starter-kit`
@@ -151,4 +161,3 @@ npm unpublish native-tide-starter-kit --force
 - Always test locally before publishing
 - Make sure to update the README if you add new features
 - Consider adding a CHANGELOG.md to track version changes
-
