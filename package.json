@@ -1,6 +1,6 @@
 {
   "name": "native-tide-starter-kit",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "A comprehensive React Native starter kit with dynamic multi-theme system, authentication setup, and best practices",
   "main": "index.js",
   "bin": {
@@ -9,7 +9,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "prepublishOnly": "node scripts/copy-template.js",
+    "prepublishOnly": "node scripts/copy-template.js && node scripts/copy-nativewind-template.js",
     "version:patch": "npm version patch && git push && git push --tags",
     "version:minor": "npm version minor && git push && git push --tags",
     "version:major": "npm version major && git push && git push --tags",
@@ -53,4 +53,3 @@
     "template-shared"
   ]
 }
-
