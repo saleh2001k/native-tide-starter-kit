@@ -5,6 +5,10 @@
 
 A CLI tool to quickly scaffold a new React Native project using the Native Tide starter template.
 
+[![Discord](https://img.shields.io/badge/Discord-Join%20Community-5865F2?style=for-the-badge&logo=discord&logoColor=white)](https://discord.gg/sqgp9eXtk4)
+
+**Have questions, want to contribute, or need help?** Join our [Discord community](https://discord.gg/sqgp9eXtk4)!
+
 </div>
 
 > **⚠️ Early Version Warning**: This package is still in a very early version and is not stable. Use at your own risk. Some features may be incomplete or subject to change.
